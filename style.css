@@ -1,29 +1,30 @@
 .brand-logo {
-display: flex;
-align-items: center;
-gap: 9px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
 }
 
 .logo-icon {
-width: 42px;
-height: 38px;
-color: #493A32;
+  width: 42px;
+  height: 38px;
+  color: #493a32;
 }
 
 .logo-icon svg {
-width: 100%;
-height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .brand-name {
-font-family: Georgia, serif;
-font-size: 15px;
-font-weight: 500;
-letter-spacing: 1.5px;
-color: #493A32;
-text-decoration: none;
-transition: 0.3s;
+  font-family: Georgia, serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  color: #493a32;
+  text-decoration: none;
+  transition: 0.3s;
 }
 
 .brand-name:hover {
-color: #E87970;
+  color: #e87970;
+}
