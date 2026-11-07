@@ -1,13 +1,44 @@
+/* Navbar */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.site-header {
+  width: 100%;
+  background: #ffffff;
+  border-bottom: 1px solid #eeeeee;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar {
+  max-width: 1250px;
+  height: 90px;
+  margin: auto;
+  padding: 0 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+
 .brand-logo {
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
+  text-decoration: none;
+  color: #493a32;
 }
 
 .logo-icon {
   width: 42px;
   height: 38px;
-  color: #493a32;
 }
 
 .logo-icon svg {
@@ -15,16 +46,99 @@
   height: 100%;
 }
 
-.brand-name {
+.brand-logo span {
   font-family: Georgia, serif;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 16px;
   letter-spacing: 1.5px;
-  color: #493a32;
+}
+
+/* Navigation */
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  list-style: none;
+}
+
+.nav-links a {
   text-decoration: none;
+  color: #444444;
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  font-family: Arial, sans-serif;
   transition: 0.3s;
 }
 
-.brand-name:hover {
+.nav-links a:hover {
   color: #e87970;
+}
+
+.nav-links a.active {
+  border: 1px solid #eeeeee;
+  border-radius: 20px;
+  padding: 10px 17px;
+  color: #e87970;
+}
+
+/* Icons */
+
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-icons a {
+  font-size: 23px;
+  text-decoration: none;
+  color: #493a32;
+  transition: 0.3s;
+}
+
+.nav-icons a:hover {
+  color: #e87970;
+}
+
+/* Mobile Menu */
+
+.menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 23px;
+  color: #493a32;
+  cursor: pointer;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .navbar {
+    height: 75px;
+    padding: 0 18px;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 75px;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+
+    flex-direction: column;
+    gap: 25px;
+
+    padding: 30px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.06);
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
 }
