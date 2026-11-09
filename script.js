@@ -184,3 +184,328 @@ function renderQuick() {
       }),
   );
 }
+/* ============ CHIPS ============ */
+function renderChips() {
+  const cats = ["All", "Breakfast", "Main", "Dessert", "Soup", "Bookmarked"];
+  $("#chips").innerHTML = cats
+    .map(
+      (c) =>
+        `<div class="chip ${state.cat === c ? "on" : ""}" data-c="${c}">${c}</div>`,
+    )
+    .join("");
+  $$("#chips .chip").forEach(
+    (c) =>
+      (c.onclick = () => {
+        state.cat = c.dataset.c;
+        state.onlyFav = false;
+        renderChips();
+        render();
+      }),
+  );
+}
+
+/* ============ GRID ============ */
+function render() {
+  let list = RECIPES.filter((r) => {
+    if (state.cat === "Bookmarked") return bookmarks.includes(r.id);
+    if (state.onlyFav) return favorites.includes(r.id);
+    if (state.cat !== "All") return r.cat === state.cat;
+    return true;
+  });
+  if (state.query) {
+    const q = state.query.toLowerCase();
+    list = list.filter(
+      (r) =>
+        r.title.toLowerCase().includes(q) ||
+        r.desc.toLowerCase().includes(q) ||
+        r.cat.toLowerCase().includes(q),
+    );
+  }
+  if (state.sort === "top") list.sort((a, b) => b.rating - a.rating);
+
+  $("#count").textContent =
+    `${list.length} recipe${list.length !== 1 ? "s" : ""}`;
+  const grid = $("#grid");
+  if (!list.length) {
+    grid.innerHTML = `<p style="grid-column:1/-1;text-align:center;color:var(--muted);padding:60px 0">No recipes found 🍽️</p>`;
+    return;
+  }
+  grid.innerHTML = list
+    .map(
+      (r) => `
+    <article class="card reveal in" data-id="${r.id}">
+      <div class="thumb">
+        <img src="${r.img}" alt="${r.title}" onerror="this.style.display='none'">
+        <span class="tag">${r.cat}</span>
+        <button class="fav ${favorites.includes(r.id) ? "on" : ""}" data-fav="${r.id}">${favorites.includes(r.id) ? "❤️" : "🤍"}</button>
+      </div>
+      <div class="body">
+        <h3>${r.title}</h3>
+        <p>${r.desc}</p>
+        <div class="meta"><span>⏱ ${r.time}</span><span>⭐ ${r.rating}</span></div>
+        <button class="add-cart" data-add="${r.id}" type="button">Add to cart 🛒</button>
+      </div>
+    </article>`,
+    )
+    .join("");
+  $$("#grid .fav").forEach(
+    (b) =>
+      (b.onclick = (e) => {
+        e.stopPropagation();
+        toggleFav(+b.dataset.fav);
+      }),
+  );
+  $$("#grid .add-cart").forEach((button) => {
+    button.onclick = (event) => {
+      event.stopPropagation();
+      addToCart(+button.dataset.add);
+    };
+  });
+  $$("#grid .card").forEach(
+    (c) => (c.onclick = () => openModal(+c.dataset.id)),
+  );
+}
+
+/* ============ FAVORITES ============ */
+function toggleFav(id) {
+  const i = favorites.indexOf(id);
+  if (i > -1) favorites.splice(i, 1);
+  else favorites.push(id);
+  localStorage.setItem("favs", JSON.stringify(favorites));
+  render();
+  toast(
+    favorites.includes(id) ? "Saved to favorites ❤️" : "Removed from favorites",
+  );
+}
+function toggleMark(id) {
+  const i = bookmarks.indexOf(id);
+  if (i > -1) bookmarks.splice(i, 1);
+  else bookmarks.push(id);
+  localStorage.setItem("marks", JSON.stringify(bookmarks));
+  toast(bookmarks.includes(id) ? "Bookmarked 🔖" : "Bookmark removed");
+}
+
+/* ============ SHOPPING CART / ORDERS ============ */
+let cart = [];
+
+function updateCartCount() {
+  $("#cartCount").textContent = cart.reduce((sum, item) => sum + item.qty, 0);
+}
+
+function addToCart(id) {
+  const recipe = RECIPES.find((r) => r.id === id);
+  if (!recipe) return;
+  const existing = cart.find((item) => item.id === id);
+  if (existing) existing.qty += 1;
+  else cart.push({ id: recipe.id, title: recipe.title, qty: 1 });
+  updateCartCount();
+  renderCart();
+  toast("Added to your cart 🛒");
+}
+
+function renderCart() {
+  const container = $("#cartItems");
+  if (!cart.length) {
+    container.innerHTML =
+      '<p class="cart-empty">Your cart is empty. Add a dish to get started.</p>';
+    return;
+  }
+  container.innerHTML = cart
+    .map(
+      (item) => `
+          <div class="cart-item">
+            <div><strong>${item.title}</strong><small>Quantity: ${item.qty}</small></div>
+            <div class="qty-controls">
+              <button type="button" data-minus="${item.id}" aria-label="Decrease quantity">−</button>
+              <span>${item.qty}</span>
+              <button type="button" data-plus="${item.id}" aria-label="Increase quantity">+</button>
+              <button type="button" class="remove-item" data-remove="${item.id}" aria-label="Remove item">×</button>
+            </div>
+          </div>
+        `,
+    )
+    .join("");
+
+  $$("[data-plus]").forEach(
+    (button) => (button.onclick = () => changeCartQty(+button.dataset.plus, 1)),
+  );
+  $$("[data-minus]").forEach(
+    (button) =>
+      (button.onclick = () => changeCartQty(+button.dataset.minus, -1)),
+  );
+  $$("[data-remove]").forEach(
+    (button) =>
+      (button.onclick = () => {
+        cart = cart.filter((item) => item.id !== +button.dataset.remove);
+        updateCartCount();
+        renderCart();
+      }),
+  );
+}
+
+function changeCartQty(id, change) {
+  const item = cart.find((entry) => entry.id === id);
+  if (!item) return;
+  item.qty += change;
+  if (item.qty <= 0) cart = cart.filter((entry) => entry.id !== id);
+  updateCartCount();
+  renderCart();
+}
+
+$("#cartBtn").onclick = () => {
+  renderCart();
+  $("#cartModal").classList.add("open");
+};
+$("#closeCart").onclick = () => $("#cartModal").classList.remove("open");
+$("#cartModal").onclick = (event) => {
+  if (event.target.id === "cartModal") $("#cartModal").classList.remove("open");
+};
+
+$("#orderForm").onsubmit = (event) => {
+  event.preventDefault();
+  if (!cart.length) {
+    toast("Please add a dish to your cart first.");
+    return;
+  }
+  const orderDetails = cart
+    .map((item) => `${item.title} × ${item.qty}`)
+    .join("\\n");
+  const customer = $("#customerName").value.trim();
+  const phone = $("#customerPhone").value.trim();
+  const address = $("#customerAddress").value.trim();
+  if (!customer || !phone || !address) return;
+
+  // Front-end demo: show the submitted order confirmation.
+  console.log("New order:", {
+    customer,
+    phone,
+    address,
+    note: $("#orderNote").value.trim(),
+    items: orderDetails,
+  });
+  cart = [];
+  updateCartCount();
+  renderCart();
+  $("#orderForm").reset();
+  $("#cartModal").classList.remove("open");
+  toast("Your order has been registered successfully! ✅");
+};
+
+/* ============ MODAL ============ */
+function openModal(id) {
+  const r = RECIPES.find((x) => x.id === id);
+  $("#mImg").src = r.img;
+  $("#mTitle").textContent = r.title;
+  $("#mDesc").textContent = r.desc;
+  $("#mMeta").innerHTML =
+    `<span>⏱ ${r.time}</span><span>⭐ ${r.rating}</span><span>🏷 ${r.cat}</span>`;
+  $("#mFav").textContent = favorites.includes(id)
+    ? "Remove from favorites ❤️"
+    : "Save recipe";
+  $("#mFav").onclick = () => {
+    toggleFav(id);
+    openModal(id);
+  };
+  $("#mAddCart").onclick = () => addToCart(id);
+  $("#modal").classList.add("open");
+}
+$("#closeModal").onclick = $("#mClose2").onclick = () =>
+  $("#modal").classList.remove("open");
+$("#modal").onclick = (e) => {
+  if (e.target.id === "modal") $("#modal").classList.remove("open");
+};
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    $("#modal").classList.remove("open");
+    $("#cartModal").classList.remove("open");
+  }
+});
+
+/* ============ ARTICLES ============ */
+$("#articles").innerHTML = ARTICLES.map(
+  (a) => `
+  <div class="art reveal">
+    <div class="dot">${a.icon}</div>
+    <h4>${a.title}</h4>
+    <p>${a.desc}</p>
+  </div>`,
+).join("");
+
+/* ============ HERO SLIDER ============ */
+let heroIdx = 0;
+setInterval(() => {
+  heroIdx = (heroIdx + 1) % HERO_IMAGES.length;
+  $("#heroImg").style.opacity = 0;
+  setTimeout(() => {
+    $("#heroImg").src = HERO_IMAGES[heroIdx];
+    $("#heroImg").style.opacity = 1;
+  }, 400);
+}, 6000);
+$("#heroImg").style.transition = "opacity .4s";
+
+/* ============ THEME ============ */
+$("#themeBtn").onclick = () => {
+  document.body.classList.toggle("dark");
+  localStorage.setItem(
+    "theme",
+    document.body.classList.contains("dark") ? "dark" : "light",
+  );
+  $("#themeBtn").textContent = document.body.classList.contains("dark")
+    ? "☀️"
+    : "🌙";
+};
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark");
+  $("#themeBtn").textContent = "☀️";
+}
+
+/* ============ NAV / UI ============ */
+$("#burger").onclick = () => $("#navlinks").classList.toggle("open");
+$$("#navlinks a").forEach(
+  (a) => (a.onclick = () => $("#navlinks").classList.remove("open")),
+);
+$("#favFilter").onclick = () => {
+  state.onlyFav = !state.onlyFav;
+  state.cat = "All";
+  renderChips();
+  render();
+  toast(state.onlyFav ? "Showing favorites 💖" : "All recipes");
+};
+$("#search").addEventListener("input", (e) => {
+  state.query = e.target.value.trim();
+  render();
+});
+$("#featureBtn").onclick = () => openModal(7);
+function scrollToRecipes() {
+  $("#latest").scrollIntoView({ behavior: "smooth" });
+}
+window.scrollToRecipes = scrollToRecipes;
+
+/* ============ REVEAL + BACK TO TOP ============ */
+const io = new IntersectionObserver(
+  (es) =>
+    es.forEach((e) => {
+      if (e.isIntersecting) e.target.classList.add("in");
+    }),
+  { threshold: 0.1 },
+);
+setTimeout(() => $$(".reveal").forEach((el) => io.observe(el)), 50);
+window.addEventListener("scroll", () => {
+  $("#top").classList.toggle("show", scrollY > 500);
+});
+$("#top").onclick = () => scrollTo({ top: 0, behavior: "smooth" });
+
+/* ============ TOAST ============ */
+let toastTimer;
+function toast(msg) {
+  const t = $("#toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove("show"), 1800);
+}
+
+/* ============ INIT ============ */
+renderQuick();
+renderChips();
+render();
