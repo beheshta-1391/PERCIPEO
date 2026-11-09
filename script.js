@@ -129,3 +129,328 @@ const categories = [
     image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400",
   },
 ];
+/ 3. FEATURED RECIPES DATA
+
+const featured = [
+  {
+    name: "Italian Pizza",
+    description: "Fresh and delicious",
+    image: recipes[0].image,
+  },
+  {
+    name: "Healthy Salad",
+    description: "Eat healthy every day",
+    image: recipes[1].image,
+  },
+  {
+    name: "Chocolate Cake",
+    description: "Sweet moments",
+    image: recipes[2].image,
+  },
+  {
+    name: "Pancakes",
+    description: "Perfect breakfast",
+    image: recipes[3].image,
+  },
+  {
+    name: "Chicken Pasta",
+    description: "Taste of Italy",
+    image: recipes[4].image,
+  },
+  {
+    name: "Cheese Burger",
+    description: "Delicious and fresh",
+    image: recipes[5].image,
+  },
+  {
+    name: "Fresh Smoothie",
+    description: "Healthy drinks",
+    image: recipes[6].image,
+  },
+  {
+    name: "Sushi Rolls",
+    description: "Japanese special food",
+    image: recipes[9].image,
+  },
+];
+
+// 4. HTML ELEMENTS
+
+const categoryTrack = document.getElementById("categoryTrack");
+
+const featuredTrack = document.getElementById("featuredTrack");
+
+const popularTrack = document.getElementById("popularTrack");
+
+// 5. DISPLAY CATEGORIES
+
+function displayCategories() {
+  categoryTrack.innerHTML = "";
+
+  categories.forEach((category, index) => {
+    const card = document.createElement("div");
+
+    card.className = "category-card";
+
+    if (index === 0) {
+      card.classList.add("active");
+    }
+
+    card.innerHTML = `
+            <img
+                src="${category.image}"
+                alt="${category.name}"
+                loading="lazy"
+            >
+
+            <p>${category.name}</p>
+        `;
+
+    card.addEventListener("click", () => {
+      document.querySelectorAll(".category-card").forEach((item) => {
+        item.classList.remove("active");
+      });
+
+      card.classList.add("active");
+    });
+
+    categoryTrack.appendChild(card);
+  });
+}
+
+// 6. DISPLAY FEATURED RECIPES
+
+function displayFeatured() {
+  featuredTrack.innerHTML = "";
+
+  featured.forEach((item) => {
+    const card = document.createElement("div");
+
+    card.className = "featured-card";
+
+    card.innerHTML = `
+            <img
+                src="${item.image}"
+                alt="${item.name}"
+                loading="lazy"
+            >
+
+            <div class="featured-info">
+
+                <h3>${item.name}</h3>
+
+                <p>${item.description}</p>
+
+                // <span class="card-arrow">➜</span>
+
+            </div>
+        `;
+
+    featuredTrack.appendChild(card);
+  });
+}
+
+// 7. DISPLAY POPULAR RECIPES
+
+function displayPopular() {
+  popularTrack.innerHTML = "";
+
+  const popularRecipes = recipes.slice(0, 10);
+
+  popularRecipes.forEach((recipe) => {
+    const card = document.createElement("div");
+
+    card.className = "popular-card";
+
+    card.innerHTML = `
+            <img
+                src="${recipe.image}"
+                alt="${recipe.name}"
+                loading="lazy"
+            >
+
+            <div class="popular-info">
+
+                <h3>${recipe.name}</h3>
+
+                <p>⏱ ${recipe.time}</p>
+
+            </div>
+        `;
+
+    popularTrack.appendChild(card);
+  });
+}
+
+// 8. AUTOMATIC CAROUSEL
+
+function createSlider(windowId, leftId, rightId, speed) {
+  const slider = document.getElementById(windowId);
+
+  const leftButton = document.getElementById(leftId);
+
+  const rightButton = document.getElementById(rightId);
+
+  let direction = 1;
+
+  let paused = false;
+
+  let animationId;
+
+  let manualMove = false;
+
+  // AUTOMATIC MOVEMENT
+
+  function animate() {
+    const maxScroll = slider.scrollWidth - slider.clientWidth;
+
+    if (maxScroll > 0 && !paused && !manualMove) {
+      slider.scrollLeft += direction * speed;
+
+      if (slider.scrollLeft >= maxScroll) {
+        direction = -1;
+      }
+
+      if (slider.scrollLeft <= 0) {
+        direction = 1;
+      }
+    }
+
+    animationId = requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  // PAUSE ON HOVER
+
+  slider.addEventListener("mouseenter", () => {
+    paused = true;
+  });
+
+  // RESUME ON MOUSE LEAVE
+
+  slider.addEventListener("mouseleave", () => {
+    paused = false;
+  });
+
+  // TOUCH SUPPORT
+
+  slider.addEventListener("touchstart", () => {
+    paused = true;
+  });
+
+  slider.addEventListener("touchend", () => {
+    paused = false;
+  });
+
+  // LEFT ARROW
+
+  leftButton.addEventListener("click", () => {
+    manualMove = true;
+
+    direction = -1;
+
+    slider.scrollBy({
+      left: -250,
+
+      behavior: "smooth",
+    });
+
+    setTimeout(() => {
+      manualMove = false;
+    }, 800);
+  });
+
+  // RIGHT ARROW
+
+  rightButton.addEventListener("click", () => {
+    manualMove = true;
+
+    direction = 1;
+
+    slider.scrollBy({
+      left: 250,
+
+      behavior: "smooth",
+    });
+
+    setTimeout(() => {
+      manualMove = false;
+    }, 800);
+  });
+}
+
+// 9. INITIALIZE THREE SLIDERS
+
+createSlider("catWindow", "catPrev", "catNext", 0.4);
+
+createSlider("featuredWindow", "featuredPrev", "featuredNext", 0.6);
+
+createSlider("popularWindow", "popularPrev", "popularNext", 0.5);
+
+// 10. START WEBSITE
+
+displayCategories();
+
+displayFeatured();
+
+displayPopular();
+// باز و بسته کردن منوی موبایل
+
+const burger = document.getElementById("burger");
+const navlinks = document.getElementById("navlinks");
+
+burger.addEventListener("click", function () {
+  navlinks.classList.toggle("open");
+});
+
+navlinks.querySelectorAll("a").forEach(function (link) {
+  link.addEventListener("click", function () {
+    navlinks.classList.remove("open");
+  });
+});
+
+// باز و بسته کردن پنل سبد خرید
+
+const cartBtn = document.getElementById("cartBtn");
+const cartPanel = document.getElementById("cartPanel");
+
+cartBtn.addEventListener("click", function () {
+  cartPanel.classList.toggle("open");
+});
+
+// تغییر حالت روشن و تاریک
+
+const themeBtn = document.getElementById("themeBtn");
+
+if (localStorage.getItem("percipeo-theme") === "dark") {
+  document.body.classList.add("dark");
+  themeBtn.textContent = "☀️";
+}
+
+themeBtn.addEventListener("click", function () {
+  document.body.classList.toggle("dark");
+
+  const darkMode = document.body.classList.contains("dark");
+
+  themeBtn.textContent = darkMode ? "☀️" : "🌙";
+
+  localStorage.setItem("percipeo-theme", darkMode ? "dark" : "light");
+});
+
+// دکمه علاقه‌مندی‌ها
+
+const favFilter = document.getElementById("favFilter");
+
+favFilter.addEventListener("click", function () {
+  document.dispatchEvent(new CustomEvent("showFavorites"));
+});
+
+// بستن منو و سبد خرید با کلید Escape
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    navlinks.classList.remove("open");
+    cartPanel.classList.remove("open");
+  }
+});
