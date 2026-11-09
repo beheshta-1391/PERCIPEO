@@ -67,3 +67,65 @@ const recipes = [
   },
 ];
 // 2. CATEGORIES DATA
+const categories = [
+  {
+    name: "All Recipes",
+    image: recipes[0].image,
+  },
+  {
+    name: "Breakfast",
+    image: recipes[3].image,
+  },
+  {
+    name: "Lunch",
+    image: recipes[0].image,
+  },
+  {
+    name: "Dinner",
+    image: recipes[4].image,
+  },
+  {
+    name: "Desserts",
+    image: recipes[2].image,
+  },
+  {
+    name: "Pizza",
+    image: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400",
+  },
+  {
+    name: "Pasta",
+    image: recipes[4].image,
+  },
+  {
+    name: "Salads",
+    image: recipes[1].image,
+  },
+  {
+    name: "Burgers",
+    image: recipes[5].image,
+  },
+  {
+    name: "Seafood",
+    image: "https://images.unsplash.com/photo-1559737558-2f5a35f4523b?w=400",
+  },
+  {
+    name: "Drinks",
+    image: recipes[6].image,
+  },
+  {
+    name: "Vegetarian",
+    image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400",
+  },
+  {
+    name: "Chicken",
+    image: recipes[8].image,
+  },
+  {
+    name: "Soups",
+    image: "https://images.unsplash.com/photo-1547592180-85f173990554?w=400",
+  },
+  {
+    name: "Snacks",
+    image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400",
+  },
+];
