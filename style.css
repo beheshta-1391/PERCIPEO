@@ -317,3 +317,90 @@ footer h2 span {
   color: var(--sage);
   font-size: 13px;
 }
+* CAROUSEL */ .carousel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.track-window {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  scroll-behavior: smooth;
+}
+
+.track {
+  display: flex;
+  gap: 15px;
+  width: max-content;
+}
+
+/* ARROWS */
+
+.arrow {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  border-radius: 50%;
+  border: 1px solid #ded4c7;
+  background: white;
+  color: var(--brown);
+  font-size: 28px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.arrow:hover {
+  background: var(--orange);
+  color: white;
+  transform: scale(1.12);
+}
+
+/* CATEGORY CARDS */
+
+.category-card {
+  width: 115px;
+  min-width: 115px;
+  height: 125px;
+  background: white;
+  border: 1px solid #eee3d6;
+  border-radius: 17px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.category-card img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: 0.4s;
+}
+
+.category-card p {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.category-card:hover {
+  background: var(--gold);
+  transform: translateY(-5px);
+}
+
+.category-card:hover img {
+  transform: scale(1.12) rotate(5deg);
+}
+
+.category-card.active {
+  border: 2px solid var(--orange);
+  background: #fff1d0;
+}
+
+/* FEATURED IMAGE CARDS */
