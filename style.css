@@ -610,3 +610,64 @@ footer h2 span {
     font-size: 12px;
   }
 }
+#catWindow {
+  padding: 15px 10px 20px;
+  box-sizing: border-box;
+}
+
+#categoryTrack {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 8px 5px;
+}
+
+.category-card {
+  position: relative;
+  flex: 0 0 125px;
+  box-sizing: border-box;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.category-card:hover {
+  border-color: #e67e22;
+  background: #fff8ef;
+  box-shadow: 0 5px 18px rgba(230, 126, 34, 0.2);
+  z-index: 5;
+}
+
+.category-card:hover img {
+  transform: scale(1.08);
+}
+
+.category-card img {
+  transition: transform 0.3s ease;
+}
+
+.category-card.active {
+  border-color: #e67e22;
+  background: #fff8ef;
+}
+.featured-card {
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.featured-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.featured-card:hover img {
+  transform: scale(1.03);
+}
+.featured-card:hover img {
+  transform: none;
+}
