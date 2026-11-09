@@ -109,3 +109,78 @@ const RECIPES = [
     desc: "Basil pesto, cherry tomatoes and burrata over cold pasta. Picnic approved.",
   },
 ];
+const QUICK = [
+  { key: "all", icon: "🏠", label: "Home" },
+  { key: "best", icon: "🔥", label: "Best" },
+  { key: "fav", icon: "💖", label: "Favorite" },
+  { key: "bookmark", icon: "🔖", label: "Bookmark" },
+  { key: "more", icon: "⋯", label: "More" },
+];
+
+const ARTICLES = [
+  {
+    icon: "🥟",
+    title: "Three things I learned after being a line cook",
+    desc: "Burns teach patience, prep teaches respect, and the 10pm rush teaches humility.",
+  },
+  {
+    icon: "🍞",
+    title: "With its delicately thin outside and pillowy middle",
+    desc: "The secret to a sourdough that shatters on the outside but clouds inside.",
+  },
+  {
+    icon: "🔥",
+    title: "Why your steak needs a dry brine",
+    desc: "Two hours of salt and patience gives you a crust you can hear from across the room.",
+  },
+];
+
+const HERO_IMAGES = [
+  "https://images.unsplash.com/photo-1568901346375-23c9450c58cd9?w=1400&q=80",
+  "https://images.unsplash.com/photo-1550547660-d9450f859349?w=1400&q=80",
+  "https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=1400&q=80",
+];
+
+/* ============ STATE ============ */
+let state = { cat: "All", query: "", onlyFav: false, sort: "newest" };
+let favorites = JSON.parse(localStorage.getItem("favs") || "[]");
+let bookmarks = JSON.parse(localStorage.getItem("marks") || "[]");
+
+const $ = (s) => document.querySelector(s);
+const $$ = (s) => [...document.querySelectorAll(s)];
+
+/* ============ RENDER QUICK ICONS ============ */
+function renderQuick() {
+  $("#quick").innerHTML = QUICK.map(
+    (q) => `
+    <button class="${q.key === "all" ? "on" : ""}" data-q="${q.key}">
+      <span class="ic">${q.icon}</span>${q.label}
+    </button>`,
+  ).join("");
+  $$("#quick button").forEach(
+    (b) =>
+      (b.onclick = () => {
+        $$("#quick button").forEach((x) => x.classList.remove("on"));
+        b.classList.add("on");
+        const k = b.dataset.q;
+        if (k === "fav") {
+          state.onlyFav = !state.onlyFav;
+          state.cat = "All";
+        } else if (k === "best") {
+          state.cat = "All";
+          state.sort = "top";
+        } else if (k === "bookmark") {
+          state.onlyFav = false;
+          state.cat = "Bookmarked";
+        } else if (k === "all") {
+          state.onlyFav = false;
+          state.cat = "All";
+          state.sort = "newest";
+        } else {
+          toast("More options coming soon 😄");
+        }
+        renderChips();
+        render();
+      }),
+  );
+}
