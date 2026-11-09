@@ -295,3 +295,25 @@ footer h2 span {
   font-size: 22px;
   cursor: pointer;
 }
+/* SECTIONS */
+
+.section {
+  margin-bottom: 42px;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 20px 20px;
+}
+
+.section-heading h2 {
+  font-size: 25px;
+  color: var(--brown);
+}
+
+.section-heading span {
+  color: var(--sage);
+  font-size: 13px;
+}
