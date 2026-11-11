@@ -129,7 +129,6 @@ const categories = [
     image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400",
   },
 ];
-/ 3. FEATURED RECIPES DATA
 
 const featured = [
   {
