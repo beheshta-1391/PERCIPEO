@@ -535,3 +535,111 @@ body.dark .hero p {
 .weekly-emoji {
   font-size: 100px;
 }
+/* FOOTER */
+
+.footer {
+  padding: 25px 0;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.footer .logo {
+  margin: 0;
+  font-size: 14px;
+}
+
+.footer .logo-icon {
+  width: 29px;
+  height: 29px;
+  font-size: 18px;
+}
+
+.footer p {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+/* MODALS AND PANELS */
+
+.modal-overlay,
+.panel-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(25, 18, 14, 0.6);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.modal-box {
+  background: var(--surface);
+  color: var(--text);
+  width: 100%;
+  max-width: 650px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 25px;
+  border-radius: 17px;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  right: 16px;
+  top: 12px;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 23px;
+  z-index: 3;
+}
+
+.detail-image {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 18px;
+}
+
+.detail-title {
+  font-family: "Playfair Display", serif;
+  font-size: 27px;
+  margin: 10px 0;
+}
+
+.detail-description {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 13px;
+}
+
+.detail-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-top: 22px;
+}
+
+.detail-columns h3 {
+  margin-bottom: 12px;
+  font-family: "Playfair Display", serif;
+}
+
+.detail-columns li {
+  margin: 9px 0;
+  font-size: 12px;
+  line-height: 1.6;
+}
