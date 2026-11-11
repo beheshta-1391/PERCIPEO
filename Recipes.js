@@ -1,3 +1,54 @@
+// باز و بسته کردن منوی موبایل
+const burger = document.getElementById("burger");
+const navlinks = document.getElementById("navlinks");
+
+burger.addEventListener("click", function () {
+  navlinks.classList.toggle("open");
+});
+
+navlinks.querySelectorAll("a").forEach(function (link) {
+  link.addEventListener("click", function () {
+    navlinks.classList.remove("open");
+  });
+});
+
+// باز و بسته کردن پنل سبد خرید
+const cartBtn = document.getElementById("cartBtn");
+const cartPanel = document.getElementById("cartPanel");
+
+cartBtn.addEventListener("click", function () {
+  cartPanel.classList.toggle("open");
+});
+
+// تغییر حالت روشن و تاریک
+const themeBtn = document.getElementById("themeBtn");
+
+if (localStorage.getItem("percipeo-theme") === "dark") {
+  document.body.classList.add("dark");
+  themeBtn.textContent = "☀️";
+}
+
+themeBtn.addEventListener("click", function () {
+  document.body.classList.toggle("dark");
+  const darkMode = document.body.classList.contains("dark");
+  themeBtn.textContent = darkMode ? "☀️" : "🌙";
+  localStorage.setItem("percipeo-theme", darkMode ? "dark" : "light");
+});
+
+// دکمه علاقه‌مندی‌ها؛ برای وصل کردن به فیلتر صفحه اصلی
+const favFilter = document.getElementById("favFilter");
+
+favFilter.addEventListener("click", function () {
+  document.dispatchEvent(new CustomEvent("showFavorites"));
+});
+
+// بستن منو و سبد خرید با کلید Escape
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    navlinks.classList.remove("open");
+    cartPanel.classList.remove("open");
+  }
+});
 (() => {
   "use strict";
 
