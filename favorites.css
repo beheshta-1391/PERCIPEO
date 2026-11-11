@@ -426,3 +426,112 @@ body.dark .hero p {
   transform: translateY(-5px);
   box-shadow: var(--shadow);
 }
+
+.card-image {
+  position: relative;
+  height: 165px;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.4s;
+}
+
+.recipe-card:hover .card-image img {
+  transform: scale(1.07);
+}
+
+.favorite-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--surface);
+  color: var(--brown);
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+}
+
+.favorite-btn.saved {
+  color: #df594a;
+}
+
+.card-body {
+  padding: 14px;
+}
+
+.card-category {
+  color: var(--orange);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.card-body h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 16px;
+  margin: 7px 0;
+}
+
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 10px;
+  margin: 12px 0;
+}
+
+.card-meta i {
+  color: var(--gold);
+}
+
+.card-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 11px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-bottom strong {
+  font-size: 11px;
+}
+
+.view-btn {
+  border: none;
+  color: var(--orange);
+  background: transparent;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+/* WEEKLY */
+
+.weekly-section {
+  margin: 50px 0;
+  padding: 35px;
+  background: var(--sage);
+  color: var(--brown);
+  border-radius: 17px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.weekly-section h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 31px;
+  margin: 10px 0;
+}
+
+.weekly-section p {
+  font-size: 12px;
+  margin-bottom: 17px;
+}
+
+.weekly-emoji {
+  font-size: 100px;
+}
