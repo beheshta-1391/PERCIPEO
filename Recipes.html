@@ -1,9 +1,11 @@
+
 <!doctype html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#FFF8EF" />
+    <link rel="icon" href="data:," />
     <meta
       name="description"
       content="Savouria — seasonal recipes, pantry staples and dinners you will make on repeat."
@@ -27,11 +29,8 @@
       rel="stylesheet"
     />
     <link href="Recipes.css" rel="stylesheet" />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23FFF8EF'/%3E%3Ccircle cx='32' cy='32' r='18' fill='%23F4C430'/%3E%3Cpath d='M30 18h4v10l8 16h-5l-5-10-5 10h-5l8-16z' fill='%23493A32'/%3E%3C/svg%3E"
-    />
   </head>
+
   <body>
     <header>
       <div class="wrap nav">
@@ -46,30 +45,15 @@
         </nav>
 
         <div class="tools">
-          <button
-            class="iconbtn"
-            id="cartBtn"
-            aria-label="Shopping cart"
-            title="Shopping cart"
-          >
+          <button class="iconbtn" id="cartBtn" aria-label="Shopping cart" title="Shopping cart">
             🛒<span class="cart-count" id="cartCount">0</span>
           </button>
 
-          <button
-            class="iconbtn"
-            id="themeBtn"
-            title="Change theme"
-            aria-label="Change theme"
-          >
+          <button class="iconbtn" id="themeBtn" title="Change theme" aria-label="Change theme">
             🌙
           </button>
 
-          <button
-            class="iconbtn"
-            id="favFilter"
-            title="Show favorites"
-            aria-label="Show favorites"
-          >
+          <button class="iconbtn" id="favFilter" title="Show favorites" aria-label="Show favorites">
             💖
           </button>
 
@@ -84,6 +68,7 @@
         <p>هنوز محصولی به سبد خرید اضافه نشده است.</p>
       </div>
     </header>
+
     <a class="skip-link" href="#recipesSection">Skip to recipes</a>
 
     <div class="ambient" aria-hidden="true">
@@ -92,28 +77,27 @@
       <span class="ambient__blob ambient__blob--orange"></span>
     </div>
 
-    <main class="top"  id="#latest">
+    <main class="top" id="latest">
       <div class="container-xxl">
         <div class="page-panel">
           <section class="page-head">
             <p class="eyebrow">The Savouria kitchen</p>
+
             <div class="page-head__row">
               <h1 class="page-title">Recipes</h1>
+
               <div class="page-head__side">
                 <p class="page-sub">
                   Seasonal plates, pantry staples and the dinners you make on
                   repeat — tested twice in a very small kitchen.
                 </p>
+
                 <div class="page-actions">
-                  <button
-                    type="button"
-                    class="icon-btn"
-                    id="savedBtn"
-                    aria-label="View saved recipes"
-                  >
+                  <button type="button" class="icon-btn" id="savedBtn" aria-label="View saved recipes">
                     <i class="fa-regular fa-heart"></i>
                     <span class="count-badge" id="savedCount">0</span>
                   </button>
+
                   <button type="button" class="btn btn-gold" id="tonightBtn">
                     <i class="fa-solid fa-wand-magic-sparkles"></i>
                     <span>Tonight’s pick</span>
@@ -121,6 +105,7 @@
                 </div>
               </div>
             </div>
+
             <hr class="page-rule" />
           </section>
 
@@ -128,6 +113,7 @@
             <aside class="col-lg-4 col-xl-3 sidebar-col">
               <div class="sidebar reveal">
                 <div class="filter-panel" data-filter-root="desktop"></div>
+
                 <div class="sidebar-note">
                   <i class="fa-solid fa-seedling" aria-hidden="true"></i>
                   <p>
@@ -139,24 +125,11 @@
             </aside>
 
             <div class="col-lg-8 col-xl-9">
-              <section
-                class="results"
-                id="recipesSection"
-                aria-labelledby="resultsCount"
-              >
+              <section class="results" id="recipesSection" aria-labelledby="resultsCount">
                 <div class="chips-row">
-                  <div
-                    class="chips"
-                    id="chipRow"
-                    aria-label="Filter by ingredient"
-                  ></div>
-                  <button
-                    type="button"
-                    class="chip chip--more"
-                    id="chipMore"
-                    aria-expanded="false"
-                    aria-controls="chipRow"
-                  >
+                  <div class="chips" id="chipRow" aria-label="Filter by ingredient"></div>
+
+                  <button type="button" class="chip chip--more" id="chipMore" aria-expanded="false" aria-controls="chipRow">
                     <i class="fa-solid fa-plus"></i><span>Show more</span>
                   </button>
                 </div>
@@ -165,6 +138,7 @@
                   <p class="results-count" id="resultsCount" aria-live="polite">
                     12 recipes
                   </p>
+
                   <div class="results-tools">
                     <button
                       type="button"
@@ -176,22 +150,15 @@
                     >
                       <i class="fa-solid fa-sliders"></i>
                       <span class="filters-trigger__label">Filters</span>
-                      <span class="ghost-btn__count" id="mobileFilterCount"
-                        >0</span
-                      >
+                      <span class="ghost-btn__count" id="mobileFilterCount">0</span>
                     </button>
-                    <button
-                      type="button"
-                      class="ghost-btn"
-                      id="savedToggle"
-                      aria-pressed="false"
-                    >
+
+                    <button type="button" class="ghost-btn" id="savedToggle" aria-pressed="false">
                       <i class="fa-regular fa-heart"></i>
                       <span>Saved</span>
-                      <span class="ghost-btn__count" id="savedToggleCount"
-                        >0</span
-                      >
+                      <span class="ghost-btn__count" id="savedToggleCount">0</span>
                     </button>
+
                     <label class="sort">
                       <span>Sort</span>
                       <select id="sortSelect" aria-label="Sort recipes">
@@ -205,15 +172,10 @@
                 </div>
 
                 <div class="recipe-grid" id="recipesGrid"></div>
-
                 <div class="empty-state" id="emptyState" hidden></div>
 
                 <div class="load-wrap">
-                  <button
-                    type="button"
-                    class="btn btn-outline-brown btn-load"
-                    id="loadMore"
-                  >
+                  <button type="button" class="btn btn-outline-brown btn-load" id="loadMore">
                     <span>Load more recipes</span>
                     <i class="fa-solid fa-arrow-down"></i>
                   </button>
@@ -229,12 +191,7 @@
       <i class="fa-solid fa-arrow-up"></i>
     </button>
 
-    <div
-      class="toast-stack"
-      id="toastStack"
-      aria-live="polite"
-      aria-atomic="false"
-    ></div>
+    <div class="toast-stack" id="toastStack" aria-live="polite" aria-atomic="false"></div>
 
     <div
       class="modal fade recipe-modal"
@@ -243,16 +200,9 @@
       aria-labelledby="mTitle"
       aria-hidden="true"
     >
-      <div
-        class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"
-      >
+      <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
-          <button
-            type="button"
-            class="modal-close"
-            data-bs-dismiss="modal"
-            aria-label="Close recipe"
-          >
+          <button type="button" class="modal-close" data-bs-dismiss="modal" aria-label="Close recipe">
             <i class="fa-solid fa-xmark"></i>
           </button>
 
@@ -293,9 +243,7 @@
               <div class="modal-section">
                 <div class="modal-section__head">
                   <h3>Ingredients</h3>
-                  <span class="ing-progress-label" id="ingProgressLabel"
-                    >0 / 0</span
-                  >
+                  <span class="ing-progress-label" id="ingProgressLabel">0 / 0</span>
                 </div>
                 <div class="ing-progress">
                   <span id="ingProgressBar"></span>
@@ -313,11 +261,7 @@
                   <i class="fa-solid fa-basket-shopping"></i>
                   <span>Add to shopping list</span>
                 </button>
-                <button
-                  type="button"
-                  class="btn btn-outline-brown"
-                  id="modalSave"
-                >
+                <button type="button" class="btn btn-outline-brown" id="modalSave">
                   <i class="fa-regular fa-heart"></i>
                   <span>Save recipe</span>
                 </button>
@@ -337,25 +281,17 @@
       <div class="offcanvas-header">
         <div>
           <p class="eyebrow eyebrow--tight">Refine</p>
-          <h2 class="offcanvas-title" id="filterDrawerTitle">
-            Find your next plate
-          </h2>
+          <h2 class="offcanvas-title" id="filterDrawerTitle">Find your next plate</h2>
         </div>
-        <button
-          type="button"
-          class="icon-close"
-          data-bs-dismiss="offcanvas"
-          aria-label="Close filters"
-        >
+        <button type="button" class="icon-close" data-bs-dismiss="offcanvas" aria-label="Close filters">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
+
       <div class="offcanvas-body">
-        <div
-          class="filter-panel filter-panel--drawer"
-          data-filter-root="drawer"
-        ></div>
+        <div class="filter-panel filter-panel--drawer" data-filter-root="drawer"></div>
       </div>
+
       <div class="offcanvas-foot">
         <button type="button" class="btn btn-gold w-100" id="applyFilters">
           <span>Show recipes</span>
