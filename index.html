@@ -5,5 +5,186 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    <header>
+      <div class="wrap nav">
+        <div class="logo"><span class="mark">P</span> PERCIPEO</div>
+        <nav class="navlinks" id="navlinks">
+          <a href="#hero" class="active">Home</a>
+          <a href="#latest">Recipes</a>
+          <a href="#feature">Best</a>
+          <a href="#latest">Favorite</a>
+          <a href="#articles">Blog</a>
+        </nav>
+        <div class="tools">
+          <button
+            class="iconbtn"
+            id="cartBtn"
+            title="Shopping cart"
+            aria-label="Shopping cart"
+          >
+            🛒<span id="cartCount" class="cart-count">0</span>
+          </button>
+          <button class="iconbtn" id="themeBtn" title="Toggle theme">🌙</button>
+          <button class="iconbtn" id="favFilter" title="Show favorites">
+            💖
+          </button>
+          <button class="iconbtn burger" id="burger">☰</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <!-- HERO -->
+      <section class="hero" id="hero">
+        <img
+          id="heroImg"
+          src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd9?w=1400&q=80"
+          alt="Burger"
+        />
+        <div class="shade"></div>
+        <div class="content">
+          <h1 id="heroTitle">Big Fat Cheesy <span>Burger</span> Recipes!</h1>
+          <p id="heroSub">
+            Hand-smashed patties, molten cheddar, zero regrets.
+          </p>
+          <button class="btn" onclick="scrollToRecipes()">
+            See Latest Recipes
+          </button>
+        </div>
+      </section>
+
+      <!-- QUICK ICONS -->
+      <div class="quick" id="quick"></div>
+
+      <!-- LATEST -->
+      <section id="latest">
+        <div class="head">
+          <h2>Latest Recipes</h2>
+          <span class="count" id="count"></span>
+          <div class="search">
+            <span>🔍</span>
+            <input id="search" type="text" placeholder="Search recipes..." />
+          </div>
+        </div>
+        <div class="chips" id="chips"></div>
+        <div class="grid" id="grid"></div>
+      </section>
+
+      <!-- FEATURE -->
+      <section class="feature reveal" id="feature">
+        <img
+          src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?w=900&q=80"
+          alt="Pancakes"
+        />
+        <div class="txt">
+          <span
+            class="tag"
+            style="
+              position: static;
+              background: var(--accent);
+              display: inline-block;
+            "
+            >Editor's pick</span
+          >
+          <h3>The Ultimate Strawberry Pancake</h3>
+          <p>
+            Fluffy, cloud-soft pancakes layered with sun-warmed strawberries and
+            a slow drizzle of maple. Weekend energy, ready in under 20 minutes —
+            no stress, no flour clouds in the kitchen.
+          </p>
+          <button class="btn" id="featureBtn">Get the recipe</button>
+        </div>
+      </section>
+
+      <!-- ARTICLES -->
+      <h2
+        style="
+          margin: 20px 0 22px;
+          font-size: clamp(20px, 3vw, 30px);
+          font-weight: 900;
+        "
+      >
+        From the Blog
+      </h2>
+      <div class="articles" id="articles"></div>
+    </main>
+
+    <footer>
+      <div class="wrap foot">
+        <div class="logo"><span class="mark">P</span> PERCIPEO</div>
+        <div>© 2026 Chubby Recipes · Made with ❤️ by Beheshta</div>
+      </div>
+    </footer>
+
+    <div class="modal" id="modal">
+      <div class="box" style="position: relative">
+        <button class="iconbtn close" id="closeModal">✕</button>
+        <img id="mImg" src="" alt="" />
+        <div class="inner">
+          <h3 id="mTitle"></h3>
+          <p id="mDesc"></p>
+          <div class="meta" id="mMeta"></div>
+          <div style="display: flex; gap: 10px; margin-top: 20px">
+            <button class="btn" id="mFav">Save recipe</button>
+            <button class="btn" id="mAddCart" type="button">
+              Add to cart 🛒
+            </button>
+            <button
+              class="btn ghost"
+              id="mClose2"
+              style="
+                background: var(--card);
+                color: var(--text);
+                border: 1px solid var(--line);
+                box-shadow: none;
+              "
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="cartModal">
+      <div class="box" style="position: relative; max-width: 620px">
+        <div class="inner">
+          <button class="iconbtn close" id="closeCart" type="button">✕</button>
+          <h3>🛒 Your Shopping Cart</h3>
+          <p>Review your selected dishes and send your order.</p>
+          <div class="cart-items" id="cartItems"></div>
+          <form class="order-form" id="orderForm">
+            <input
+              id="customerName"
+              type="text"
+              placeholder="Your name"
+              required
+            />
+            <input
+              id="customerPhone"
+              type="tel"
+              placeholder="Phone number"
+              required
+            />
+            <textarea
+              id="customerAddress"
+              rows="2"
+              placeholder="Delivery address"
+              required
+            ></textarea>
+            <textarea
+              id="orderNote"
+              rows="2"
+              placeholder="Order note (optional)"
+            ></textarea>
+            <button class="btn" type="submit">Send order</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+    <button class="top" id="top">↑</button>
+  </body>
 </html>
