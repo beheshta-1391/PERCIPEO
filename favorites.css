@@ -870,3 +870,21 @@ select:focus-visible {
   .card-body h3 {
     font-size: 13px;
   }
+
+  .weekly-section {
+    padding: 22px;
+  }
+
+  .weekly-emoji {
+    font-size: 60px;
+  }
+
+  .footer {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .detail-columns {
+    grid-template-columns: 1fr;
+  }
+}
