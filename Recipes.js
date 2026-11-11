@@ -1829,7 +1829,6 @@
         els.loadMore.classList.remove("is-loading");
       }, 680);
     });
-
     els.toTop.addEventListener("click", () => {
       window.scrollTo({
         top: 0,
