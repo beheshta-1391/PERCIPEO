@@ -161,7 +161,9 @@
         display: grid;
         place-items: center;
       }
-      #cartBtn { position: relative; }
+      #cartBtn {
+        position: relative;
+      }
       .add-cart {
         margin-top: 13px;
         border: 0;
@@ -173,33 +175,88 @@
         font-size: 13px;
         font-weight: 700;
         cursor: pointer;
-        transition: .2s;
+        transition: 0.2s;
       }
-      .add-cart:hover { background: var(--accent2); transform: translateY(-2px); }
-      .cart-items { display: grid; gap: 12px; margin: 18px 0; max-height: 240px; overflow: auto; }
+      .add-cart:hover {
+        background: var(--accent2);
+        transform: translateY(-2px);
+      }
+      .cart-items {
+        display: grid;
+        gap: 12px;
+        margin: 18px 0;
+        max-height: 240px;
+        overflow: auto;
+      }
       .cart-item {
-        display: flex; align-items: center; justify-content: space-between; gap: 12px;
-        padding: 12px; border: 1px solid var(--line); border-radius: 14px; background: var(--card);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--card);
       }
-      .cart-item strong { font-size: 14px; }
-      .cart-item small { display: block; color: var(--muted); margin-top: 4px; }
-      .qty-controls { display: flex; align-items: center; gap: 8px; }
+      .cart-item strong {
+        font-size: 14px;
+      }
+      .cart-item small {
+        display: block;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+      .qty-controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
       .qty-controls button {
-        width: 28px; height: 28px; border: 1px solid var(--line); border-radius: 50%;
-        background: var(--bg); color: var(--text); cursor: pointer; font-weight: 800;
+        width: 28px;
+        height: 28px;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        background: var(--bg);
+        color: var(--text);
+        cursor: pointer;
+        font-weight: 800;
       }
-      .remove-item { border: 0; background: transparent; color: #d9534f; cursor: pointer; font-size: 18px; }
-      .order-form { display: grid; gap: 10px; }
-      .order-form input, .order-form textarea {
-        width: 100%; padding: 12px 14px; border: 1px solid var(--line);
-        border-radius: 12px; background: var(--card); color: var(--text); outline: none;
+      .remove-item {
+        border: 0;
+        background: transparent;
+        color: #d9534f;
+        cursor: pointer;
+        font-size: 18px;
       }
-      .order-form input:focus, .order-form textarea:focus { border-color: var(--accent); }
-      .cart-empty { color: var(--muted); text-align: center; padding: 18px 0; }
+      .order-form {
+        display: grid;
+        gap: 10px;
+      }
+      .order-form input,
+      .order-form textarea {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--card);
+        color: var(--text);
+        outline: none;
+      }
+      .order-form input:focus,
+      .order-form textarea:focus {
+        border-color: var(--accent);
+      }
+      .cart-empty {
+        color: var(--muted);
+        text-align: center;
+        padding: 18px 0;
+      }
       @media (max-width: 860px) {
-        .cart-count { top: -4px; right: -4px; }
+        .cart-count {
+          top: -4px;
+          right: -4px;
+        }
       }
-
 
       /* ---------- HERO ---------- */
       .hero {
@@ -727,14 +784,21 @@
       <div class="wrap nav">
         <div class="logo"><span class="mark">P</span> PERCIPEO</div>
         <nav class="navlinks" id="navlinks">
-          <a href="#hero" class="active">Home</a>
-          <a href="#latest">Recipes</a>
+          <a href="PERCIPEO_updated-1.html" class="active">Home</a>
+          <a href="reclpeo.html">Recipes</a>
           <a href="#feature">Best</a>
-          <a href="#latest">Favorite</a>
+          <a href="favorites.html">Favorite</a>
           <a href="#articles">Blog</a>
         </nav>
         <div class="tools">
-          <button class="iconbtn" id="cartBtn" title="Shopping cart" aria-label="Shopping cart">🛒<span id="cartCount" class="cart-count">0</span></button>
+          <button
+            class="iconbtn"
+            id="cartBtn"
+            title="Shopping cart"
+            aria-label="Shopping cart"
+          >
+            🛒<span id="cartCount" class="cart-count">0</span>
+          </button>
           <button class="iconbtn" id="themeBtn" title="Toggle theme">🌙</button>
           <button class="iconbtn" id="favFilter" title="Show favorites">
             💖
@@ -837,7 +901,9 @@
           <div class="meta" id="mMeta"></div>
           <div style="display: flex; gap: 10px; margin-top: 20px">
             <button class="btn" id="mFav">Save recipe</button>
-            <button class="btn" id="mAddCart" type="button">Add to cart 🛒</button>
+            <button class="btn" id="mAddCart" type="button">
+              Add to cart 🛒
+            </button>
             <button
               class="btn ghost"
               id="mClose2"
@@ -856,17 +922,36 @@
     </div>
 
     <div class="modal" id="cartModal">
-      <div class="box" style="position: relative; max-width: 620px;">
+      <div class="box" style="position: relative; max-width: 620px">
         <div class="inner">
           <button class="iconbtn close" id="closeCart" type="button">✕</button>
           <h3>🛒 Your Shopping Cart</h3>
           <p>Review your selected dishes and send your order.</p>
           <div class="cart-items" id="cartItems"></div>
           <form class="order-form" id="orderForm">
-            <input id="customerName" type="text" placeholder="Your name" required />
-            <input id="customerPhone" type="tel" placeholder="Phone number" required />
-            <textarea id="customerAddress" rows="2" placeholder="Delivery address" required></textarea>
-            <textarea id="orderNote" rows="2" placeholder="Order note (optional)"></textarea>
+            <input
+              id="customerName"
+              type="text"
+              placeholder="Your name"
+              required
+            />
+            <input
+              id="customerPhone"
+              type="tel"
+              placeholder="Phone number"
+              required
+            />
+            <textarea
+              id="customerAddress"
+              rows="2"
+              placeholder="Delivery address"
+              required
+            ></textarea>
+            <textarea
+              id="orderNote"
+              rows="2"
+              placeholder="Order note (optional)"
+            ></textarea>
             <button class="btn" type="submit">Send order</button>
           </form>
         </div>
@@ -1175,12 +1260,14 @@
         toast(bookmarks.includes(id) ? "Bookmarked 🔖" : "Bookmark removed");
       }
 
-
       /* ============ SHOPPING CART / ORDERS ============ */
       let cart = [];
 
       function updateCartCount() {
-        $("#cartCount").textContent = cart.reduce((sum, item) => sum + item.qty, 0);
+        $("#cartCount").textContent = cart.reduce(
+          (sum, item) => sum + item.qty,
+          0,
+        );
       }
 
       function addToCart(id) {
@@ -1197,10 +1284,13 @@
       function renderCart() {
         const container = $("#cartItems");
         if (!cart.length) {
-          container.innerHTML = '<p class="cart-empty">Your cart is empty. Add a dish to get started.</p>';
+          container.innerHTML =
+            '<p class="cart-empty">Your cart is empty. Add a dish to get started.</p>';
           return;
         }
-        container.innerHTML = cart.map((item) => `
+        container.innerHTML = cart
+          .map(
+            (item) => `
           <div class="cart-item">
             <div><strong>${item.title}</strong><small>Quantity: ${item.qty}</small></div>
             <div class="qty-controls">
@@ -1210,15 +1300,26 @@
               <button type="button" class="remove-item" data-remove="${item.id}" aria-label="Remove item">×</button>
             </div>
           </div>
-        `).join("");
+        `,
+          )
+          .join("");
 
-        $$("[data-plus]").forEach((button) => button.onclick = () => changeCartQty(+button.dataset.plus, 1));
-        $$("[data-minus]").forEach((button) => button.onclick = () => changeCartQty(+button.dataset.minus, -1));
-        $$("[data-remove]").forEach((button) => button.onclick = () => {
-          cart = cart.filter((item) => item.id !== +button.dataset.remove);
-          updateCartCount();
-          renderCart();
-        });
+        $$("[data-plus]").forEach(
+          (button) =>
+            (button.onclick = () => changeCartQty(+button.dataset.plus, 1)),
+        );
+        $$("[data-minus]").forEach(
+          (button) =>
+            (button.onclick = () => changeCartQty(+button.dataset.minus, -1)),
+        );
+        $$("[data-remove]").forEach(
+          (button) =>
+            (button.onclick = () => {
+              cart = cart.filter((item) => item.id !== +button.dataset.remove);
+              updateCartCount();
+              renderCart();
+            }),
+        );
       }
 
       function changeCartQty(id, change) {
@@ -1236,7 +1337,8 @@
       };
       $("#closeCart").onclick = () => $("#cartModal").classList.remove("open");
       $("#cartModal").onclick = (event) => {
-        if (event.target.id === "cartModal") $("#cartModal").classList.remove("open");
+        if (event.target.id === "cartModal")
+          $("#cartModal").classList.remove("open");
       };
 
       $("#orderForm").onsubmit = (event) => {
@@ -1245,7 +1347,9 @@
           toast("Please add a dish to your cart first.");
           return;
         }
-        const orderDetails = cart.map((item) => `${item.title} × ${item.qty}`).join("\\n");
+        const orderDetails = cart
+          .map((item) => `${item.title} × ${item.qty}`)
+          .join("\\n");
         const customer = $("#customerName").value.trim();
         const phone = $("#customerPhone").value.trim();
         const address = $("#customerAddress").value.trim();
@@ -1253,7 +1357,11 @@
 
         // Front-end demo: show the submitted order confirmation.
         console.log("New order:", {
-          customer, phone, address, note: $("#orderNote").value.trim(), items: orderDetails
+          customer,
+          phone,
+          address,
+          note: $("#orderNote").value.trim(),
+          items: orderDetails,
         });
         cart = [];
         updateCartCount();
