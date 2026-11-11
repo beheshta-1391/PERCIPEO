@@ -1,0 +1,64 @@
+:root {
+  --gold: rgba(244, 196, 48, 1);
+  --brown: rgba(73, 58, 50, 1);
+  --sage: rgba(167, 174, 131, 1);
+  --orange: rgba(230, 126, 34, 1);
+  --cream: rgba(255, 248, 239, 1);
+
+  --bg: var(--cream);
+  --surface: #ffffff;
+  --text: var(--brown);
+  --muted: #94877d;
+  --border: #eee5db;
+  --shadow: 0 8px 30px rgba(73, 58, 50, 0.07);
+}
+
+body.dark {
+  --bg: #28211e;
+  --surface: #382e29;
+  --text: #fff8ef;
+  --muted: #c1b3a8;
+  --border: #50433c;
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "DM Sans", sans-serif;
+  transition: 0.3s;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+  width: 250px;
+  min-width: 250px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: 30px 19px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
