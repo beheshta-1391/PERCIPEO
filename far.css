@@ -1,0 +1,117 @@
+:root {
+  --page-bg: #fdf1ec;
+  --card-bg: #fde3d8;
+  --input-bg: #fdeee8;
+  --input-border: #d9987f;
+  --accent: #e05a2b;
+  --accent-btn: #ff5a1f;
+  --accent-btn-hover: #e64a10;
+  --text-dark: #3a2a24;
+  --placeholder: #a8928a;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--page-bg);
+  color: var(--text-dark);
+}
+
+.contact-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+/* کارت اصلی */
+.contact-card {
+  background-color: var(--card-bg);
+  border-radius: 20px;
+  padding: 2.5rem;
+}
+
+/* عنوان */
+.contact-title {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 1.6rem;
+  margin-bottom: 0.15rem;
+}
+
+.contact-subtitle {
+  font-size: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+/* فیلدها */
+.contact-input {
+  background-color: var(--input-bg);
+  border: 2px solid var(--input-border);
+  border-radius: 2px;
+  font-family: inherit;
+  font-size: 0.8rem;
+  padding: 0.6rem 0.75rem;
+  color: var(--text-dark);
+}
+
+.contact-input::placeholder {
+  color: var(--placeholder);
+}
+
+.contact-input:focus {
+  background-color: var(--input-bg);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 0.2rem rgba(224, 90, 43, 0.2);
+  color: var(--text-dark);
+}
+
+textarea.contact-input {
+  resize: vertical;
+  min-height: 110px;
+}
+
+/* دکمه */
+.contact-btn {
+  background-color: var(--accent-btn);
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.85rem;
+  border: none;
+  border-radius: 8px;
+  padding: 0.65rem 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.contact-btn:hover,
+.contact-btn:focus-visible {
+  background-color: var(--accent-btn-hover);
+  color: #fff;
+}
+
+/* عکس */
+.contact-img {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  max-height: 440px;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+  background-color: #2b2420; /* تا وقتی عکس لود نشده */
+}
+
+/* پیام موفقیت */
+.form-success {
+  margin-top: 1rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: 8px;
+  background-color: #e3f3e6;
+  color: #1f5b2d;
+  font-size: 0.8rem;
+}
+
+/* موبایل */
+@media (max-width: 575.98px) {
+  .contact-card {
+    padding: 1.5rem;
+  }
+}
