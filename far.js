@@ -26,3 +26,34 @@ form.addEventListener("submit", function (event) {
   form.classList.remove("was-validated");
   successBox.hidden = false;
 });
+
+
+// ===================== FOOTER =====================
+
+// سال جاری در کپی‌رایت
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// برگشت نرم به بالای صفحه
+document.getElementById("backToTop").addEventListener("click", function (e) {
+  e.preventDefault();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// فرم خبرنامه
+const newsletterForm = document.getElementById("newsletterForm");
+const newsletterEmail = document.getElementById("newsletterEmail");
+const newsletterMsg = document.getElementById("newsletterMsg");
+
+newsletterForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  if (!newsletterEmail.checkValidity()) {
+    newsletterMsg.textContent = "Enter a valid email address.";
+    newsletterMsg.className = "newsletter-msg err";
+    return;
+  }
+
+  newsletterMsg.textContent = "You're in! Check your inbox for our next special.";
+  newsletterMsg.className = "newsletter-msg ok";
+  newsletterForm.reset();
+});
