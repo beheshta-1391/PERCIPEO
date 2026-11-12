@@ -20,7 +20,46 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
   </head>
-
+<style>
+   a {
+        text-decoration: none;
+        color: inherit;
+      }
+   .nav {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        height: 68px;
+      }
+  .navlinks {
+        display: flex;
+        gap: 24px;
+        margin-inline-start: auto;
+        font-size: 15px;
+        color: var(--muted);
+      }
+      .navlinks a {
+        position: relative;
+        padding: 6px 0;
+      }
+      .navlinks a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 2px;
+        width: 0;
+        background: var(--accent);
+        transition: 0.3s;
+      }
+      .navlinks a:hover,
+      .navlinks a.active {
+        color: var(--text);
+      }
+      .navlinks a:hover::after {
+        width: 100%;
+      }
+</style>
   <body>
     <div class="app-layout">
       <!-- SIDEBAR -->
